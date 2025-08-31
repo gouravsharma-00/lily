@@ -23,18 +23,19 @@ export default function ImageUpload() {
     }
 
     return(
-        <div className='border-2 border-dotted rounded bg-gray-300 border-gray-100'>
-            <div></div>
+        <div 
+        className='border-2 border-dotted rounded bg-gray-300 border-gray-100 aspect-video relative
+        flex justify-center items-center'>
+            <div>
+                <picture>
+                    <img src='/icons/image-upload-icon.png' alt='image upload icon'  />
+                </picture>
+            </div>
             <input 
                 onChange={handleUpload} 
                 type='file' id='imageupload' name='imageupload' accept='image/*' 
-                className='w-full opacity-0 p-4'
+                className='w-full h-full opacity-0 p-4 cursor-pointer absolute'
                 />
-            <div>
-                {
-                    image ? <img src={image.src} alt={image.alt} width={50} height={50} /> : <p>Upload a image</p>
-                }
-            </div>
         </div>
     )
 }

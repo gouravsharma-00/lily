@@ -17,6 +17,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "paths": {
+      "@/*" : ["./app/*"],
+      "@components/*" : ["./components/*"]
+    },
     "plugins": [
       {
         "name": "next"
