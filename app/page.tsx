@@ -1,7 +1,8 @@
 import React from 'react'
+import Component from '../components/component'
 
 export default function RootPage() {
   return(
-    <h1>Hello World!!</h1>
+    <Component />
   )
 }
