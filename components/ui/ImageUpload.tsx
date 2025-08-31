@@ -24,7 +24,7 @@ export default function ImageUpload() {
 
     return(
         <div 
-        className='border-2 border-dotted rounded bg-gray-300 border-gray-100 aspect-video relative
+        className='border-2 border-dashed rounded bg-gray-100 border-gray-300 hover:bg-blue-100 hover:border-black transition-colors transition-200 ease-in aspect-video relative
         flex justify-center items-center'>
             <div>
                 <picture>
