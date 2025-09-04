@@ -3,14 +3,16 @@ import React, { useState } from 'react'
 
 export default function ImageUpload() {
     const [image, setImage] = useState
-    <{src: string, alt: string, size: {KB: number, MB: number, BYTES: number}, type: string} | null>(null);
+    <{file: File, src: string, alt: string, size: {KB: number, MB: number, BYTES: number}, type: string} | null>(null);
 
     const handleUpload = ({target}: {target: HTMLInputElement}) => {
         if(!target.files[0]) {
             return
         }
-        const imgElement = target.files[0]
-        setImage({
+        const imgElement = target.files[0];
+        () => {
+            setImage({
+            file: imgElement,
             src : URL.createObjectURL(imgElement),
             alt : imgElement.name,
             size: {
@@ -19,7 +21,33 @@ export default function ImageUpload() {
                 BYTES: Math.floor(imgElement.size)
             },
             type: imgElement.type 
-        })
+        })}
+        console.log(image)
+
+        UploadToApi(imgElement)
+    }
+
+    const UploadToApi = async (imgElement: File) => {
+        if(!imgElement) return
+        try {
+            const formData = new FormData()
+            formData.append('file', imgElement)
+
+            const response = await fetch('/api/client', {
+                method: "POST",
+                body: formData
+            })
+            if(!response.ok) {
+                throw new Error('Image ai response failed 💻')
+            }
+            const resData = await response.json()
+            if(resData.status !== 200) {
+                throw new Error('Image ai is sleeping 😴')
+            }
+            
+        }catch(err) {
+            console.log("Error: ", err)
+        }
     }
 
     return(
